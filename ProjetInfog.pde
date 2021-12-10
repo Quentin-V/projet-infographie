@@ -1,6 +1,7 @@
 PShader shader;
 
 // Variables pour faire bouger la caméra avec la souris
+final PVector vecY = new PVector(0, 1, 0);
 float rayon = 100;
 float theta = 0;
 float phi = 0;
@@ -14,23 +15,23 @@ final int[] whiteCols = {whiteCol, whiteCol, whiteCol, whiteCol, whiteCol, white
 
 PVector[] lightPos = {
 	//new PVector( 300, 300,  300),
-	new PVector( 0, -100,  0),
-	//new PVector(-50, 100, 0),
-	//new PVector(0, 100, -50),
-	new PVector(50, 100, 50)
+	new PVector(-200, 300,    0),
+	new PVector( 200, 300,    0),
+	new PVector(   0, 300,  200),
+	new PVector(   0, 300, -200)
 };
 
 PVector[] lightColor = {
 	//new PVector(255, 255, 255),
-	new PVector(255, 255, 255),
-	//new PVector(255, 255, 255),
-	//new PVector(255, 255, 255),
-	new PVector(255, 255, 255)
+	new PVector(100, 100, 100),
+	new PVector(100, 100, 100),
+	new PVector(100, 100, 100),
+	new PVector(100, 100, 100)
 };
 Chaise chaise, chaise2;
 Table table;
 Tour tour;
-PShape para;
+PShape para, cyl;
 PShape murs, sol;
 PImage wood, metal, white;
 PImage[] woods, metals, whites;
@@ -52,7 +53,8 @@ void setup() {
 	murs = creerMurs();
 	sol = creerParalepipede(-200, 0, -400, 400, 1, 800);
 	tour = new Tour(20, -31, 15);
-	re = new Repere();
+  cyl = creerCylindre(100, -100, 100, 30, 200);
+	//re = new Repere();
 
 	//para = creerParalepipede(0.0,0.0,0.0, 10.0, 10.0, 10.0, whites, new int[] {color(255, 255, 0), color(255, 0, 255), whiteCol, color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)});
 
@@ -73,13 +75,14 @@ void draw() {
 		lightPos[i].x, lightPos[i].y, lightPos[i].z);
 	}
 
-	re.dessine();
+	//re.dessine();
 	chaise.dessine();
 	chaise2.dessine();
 	table.dessine();
 	shape(murs);
 	shape(sol);
 	tour.dessine();
+  shape(cyl);
 	//shape(para);
 }
 
@@ -200,9 +203,28 @@ public PShape creerParalepipede(float x, float y, float z, float tx, float ty, f
 	return creerParalepipede(x, y, z, tx, ty, tz, whites, whiteCols, -1);
 }
 
-public PShape creerCylindre() {
+
+public PShape creerCylindre(float x, float y, float z, float diameter, float hei) {
+  return creerCylindre(x, y, z, diameter, hei, 100);
+}
+
+public PShape creerCylindre(float x, float y, float z, float r, float hei, int sideCount) {
   PShape cylindre = createShape();
-  
+  cylindre.beginShape(QUADS);
+  cylindre.noStroke();
+  cylindre.texture(white);
+  float step = TWO_PI/sideCount;
+  for(int i = 0; i < 2*sideCount; ++i) {
+    PVector vecLargeur = PVector.sub(new PVector(x + r*cos(i*step), y    , z + r*sin(i*step)), new PVector(x + r*cos(step*(i+1)), y    , z + r*sin(step*(i+1))));
+    PVector normal = vecLargeur.normalize().cross(vecY);
+    cylindre.normal(normal.x, normal.y, normal.z);
+    cylindre.vertex(x + r*cos(i*step), y    , z + r*sin(i*step), 0, 0);
+    cylindre.vertex(x + r*cos(i*step), y-hei, z + r*sin(i*step), 0, 1);
+    cylindre.vertex(x + r*cos(step*(i+1)), y-hei, z + r*sin(step*(i+1)), 1, 1);
+    cylindre.vertex(x + r*cos(step*(i+1)), y    , z + r*sin(step*(i+1)), 1, 0);
+  }
+  cylindre.endShape();
+  return cylindre;
 }
 
 PShape creerMurs() {
