@@ -1,5 +1,5 @@
 public class Tour {
-	final float LARGEUR_TOUR  = 9;
+	final float LARGEUR_TOUR  = 8;
 	final float LONGUEUR_TOUR = 24;
 	final float HAUTEUR_TOUR  = 21;
 	float x, y, z;
@@ -8,14 +8,27 @@ public class Tour {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		//PImage texTour = loadImage("./wood.jpg"); // TODO: Change the texture
-		tour = creerParalepipede(
+		PImage texTour = loadImage("./tour.jpg");
+		tour = createShape(GROUP);
+		PShape blocTour = creerParalepipede(
 			x, y, z,  // Coords
 			LARGEUR_TOUR, -HAUTEUR_TOUR, LONGUEUR_TOUR, // Size
-			new PImage[] {white, wood, wood, wood, wood, white}, // Textures
-			new int[] {color(70, 70, 70), color(70, 70, 70), color(70, 70, 70), color(255, 255, 255), color(70, 70, 70), color(70, 70, 70)}, // Couleurs
-			-1 // Shininess
+			metal,
+			color(80, 80, 80),
+			10
 		);
+		tour.addChild(blocTour);
+
+		PShape avantTour = creerParalepipede(
+			x, y, z,
+			LARGEUR_TOUR, -HAUTEUR_TOUR, -1,
+			texTour,
+			whiteCol,
+			-1,
+			-1,
+			-1
+		);
+		tour.addChild(avantTour);
 	}
 
 	void dessine() {

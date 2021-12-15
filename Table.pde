@@ -12,7 +12,7 @@ public class Table {
 		this.z = z;
 		table = createShape(GROUP);
 		table.addChild(creerPieds());
-		table.addChild(creerParalepipede(x, y-HAUTEUR_PIED, z, LONGUEUR_PLATEAU, HAUTEUR_PLATEAU, LARGEUR_PLATEAU));
+		table.addChild(new Box(x, y-HAUTEUR_PIED, z, LONGUEUR_PLATEAU, HAUTEUR_PLATEAU, LARGEUR_PLATEAU).getShape());
 	}
 
 	void dessine() {
@@ -22,10 +22,10 @@ public class Table {
 	PShape creerPieds() {
 		PShape pieds = createShape(GROUP);
 		PShape p1, p2, p3, p4;
-		p1 = creerParalepipede(x, y, z, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500);
-		p2 = creerParalepipede(x + LONGUEUR_PLATEAU - LARGEUR_PIED, y, z, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500);
-		p3 = creerParalepipede(x, y, z + LARGEUR_PLATEAU - LARGEUR_PIED, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500);
-		p4 = creerParalepipede(x + LONGUEUR_PLATEAU - LARGEUR_PIED, y, z + LARGEUR_PLATEAU - LARGEUR_PIED, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500);
+		p1 = new Box(x, y, z, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500).getShape();
+		p2 = new Box(x + LONGUEUR_PLATEAU - LARGEUR_PIED, y, z, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500).getShape();
+		p3 = new Box(x, y, z + LARGEUR_PLATEAU - LARGEUR_PIED, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500).getShape();
+		p4 = new Box(x + LONGUEUR_PLATEAU - LARGEUR_PIED, y, z + LARGEUR_PLATEAU - LARGEUR_PIED, LARGEUR_PIED, -HAUTEUR_PIED, LARGEUR_PIED, metal, color(30, 30, 30), 500).getShape();
 		pieds.addChild(p1);
 		pieds.addChild(p2);
 		pieds.addChild(p3);

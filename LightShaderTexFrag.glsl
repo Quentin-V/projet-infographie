@@ -43,7 +43,7 @@ void main() {
 			float intensity = lambertFactor(lightDir, normal);
 			float spec = 0;
 			if(vertShininess >= 0) {
-				spec      = blinnPhongFactor(lightDir, ecPosition, normal, vertShininess);
+				spec = blinnPhongFactor(lightDir, ecPosition, normal, vertShininess);
 			}
 			//      dfColor += vertColor.rgb * lightDiffuse[i] * intensity;
 			dfColor += vertColor.rgb * texColor.rgb * lightDiffuse[i] * intensity;
