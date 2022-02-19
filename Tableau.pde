@@ -2,7 +2,7 @@ public class Tableau {
 	final float LONGUEUR_TABLEAU = 400;
 	final float HAUTEUR_TABLEAU  = 130;
 	final float LARGEUR_TABLEAU  = 3;
-
+	// 80 cm du sol
 	float x, y, z;
 	PShape tableau;
 	Tableau(float x, float y, float z) {

@@ -1,15 +1,23 @@
 public class Camera {
+
+  
+  static final float fac = 5;
+  static final float angFac = 1;
+
   final PVector yNorm = new PVector(0, 1, 0);
-  PVector camVec, pos, vis;
-  float fac = 5;
-  public Camera(float posX, float posY, float posZ, float visX, float visY, float visZ) {
+  PVector camVec, pos;
+  float angX, angY;
+  public Camera(float posX, float posY, float posZ) {
     pos = new PVector(posX, posY, posZ);
-    vis = new PVector(visX, visY, visZ);
-    camVec = PVector.sub(vis, pos);
+    camVec = new PVector(1, 0, 0);
+    angX = angY = 0;
   }
   void viser() {
+    camVec.x = cos(angY) * sin(angX);
+    camVec.y = sin(angY);
+    camVec.z = cos(angY) * cos(angX);
     camera(pos.x, pos.y, pos.z,
-         vis.x, vis.y, vis.z,
+         pos.x + camVec.x,  pos.y + camVec.y,  pos.z + camVec.z,
          0, 1, 0); 
   }
   void forward(float fac) {
@@ -23,7 +31,6 @@ public class Camera {
   void left(float fac) {
     PVector perpendicular = getPerpendicularWithY(camVec).mult(-fac);
     pos.add(perpendicular);
-    vis.add(perpendicular);
   }
   
   void right(float fac) {
@@ -33,7 +40,6 @@ public class Camera {
   void up(float fac) {
     PVector yNormMult = yNorm.copy().mult(-fac);
     pos.add(yNormMult);
-    vis.add(yNormMult);
   }
   
   void down(float fac) {
@@ -41,7 +47,7 @@ public class Camera {
   }
   
   void visUp(float fac) {
-    vis.add(yNorm.copy().mult(-fac));
+    angY -= (fac/360) * 2*PI;
   }
   
   void visDown(float fac) {
@@ -49,8 +55,7 @@ public class Camera {
   }
   
   void visLeft(float fac) {
-    PVector perpendicular = getPerpendicularWithY(camVec).mult(-fac);
-    vis.add(perpendicular);
+    angX += (fac/360) * 2*PI;
   }
   
   void visRight(float fac) {
@@ -79,19 +84,18 @@ public class Camera {
         up(fac);
         break;
       case UP:
-        visUp(fac);
+        visUp(angFac);
         break;
       case 37: // LEFTARROW
-        visLeft(fac);
+        visLeft(angFac);
         break;
       case DOWN:
-        visDown(fac);
+        visDown(angFac);
         break;
       case 39: // RIGHTARROW
-        visRight(fac);
+        visRight(angFac);
         break;
     }
-    camVec = PVector.sub(vis, pos);
   }
   
   void addFac(float inc) {

@@ -1,4 +1,4 @@
-public class Tour {
+ public class Tour {
 	final float LARGEUR_TOUR  = 8;
 	final float LONGUEUR_TOUR = 24;
 	final float HAUTEUR_TOUR  = 21;
@@ -10,16 +10,16 @@ public class Tour {
 		this.z = z;
 		PImage texTour = loadImage("./tour.jpg");
 		tour = createShape(GROUP);
-		PShape blocTour = creerParalepipede(
+		PShape blocTour = new Box(
 			x, y, z,  // Coords
 			LARGEUR_TOUR, -HAUTEUR_TOUR, LONGUEUR_TOUR, // Size
 			metal,
 			color(80, 80, 80),
 			10
-		);
+		).getShape();
 		tour.addChild(blocTour);
 
-		PShape avantTour = creerParalepipede(
+		PShape avantTour = new Box(
 			x, y, z,
 			LARGEUR_TOUR, -HAUTEUR_TOUR, -1,
 			texTour,
@@ -27,7 +27,7 @@ public class Tour {
 			-1,
 			-1,
 			-1
-		);
+		).getShape();
 		tour.addChild(avantTour);
 	}
 

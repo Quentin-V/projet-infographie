@@ -106,7 +106,7 @@ public class Box extends QShape {
 		this(x, y, z, tx, ty, tz, toArraySix(tex), toArraySix(col), toArraySix(shininess), 1, 1);
 	}
 
-	// Coords, tex, col, shininess
+	// Coords, tex, col, shininess, uMult, vMult
 	Box(float x, float y, float z, float tx, float ty, float tz, PImage tex, int col, int shininess, float uFact, float vFact) {
 		this(x, y, z, tx, ty, tz, toArraySix(tex), toArraySix(col), toArraySix(shininess), uFact, vFact);
 	}

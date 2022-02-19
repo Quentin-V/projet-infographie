@@ -6,7 +6,7 @@ public class Salle extends QShape {
 		super(0, 0, 0);
 		shape = createShape(GROUP);
 		Box m1, m2, m3, m4, sol;
-		//                             x         y          z                  tx           ty             tz                color
+		//                   x         y          z                  tx           ty             tz                color
 		m1 = new Box(-LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2,             5, -HAUTEUR_SALLE, LONGUEUR_SALLE, color(200, 240, 220));
 		m2 = new Box( LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2,             5, -HAUTEUR_SALLE, LONGUEUR_SALLE, color(200, 240, 220));
 		m3 = new Box(-LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2, LARGEUR_SALLE, -HAUTEUR_SALLE,              5, color(200, 240, 220));
