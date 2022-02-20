@@ -1,10 +1,10 @@
 public class Chaise {
-	final float TAILLE_PIED = 45;
-	final float LARGEUR_PIED = 1;
-	final float LARGEUR_CHAISE = 40;
-	final float HAUTEUR_ASSISE = 1;
-	final float HAUTEUR_DOSSIER = 43;
-	final float LARGEUR_BARRE_DOSSIER = 1;
+	static final float TAILLE_PIED = 45;
+	static final float LARGEUR_PIED = 1;
+	static final float LARGEUR_CHAISE = 40;
+	static final float HAUTEUR_ASSISE = 1;
+	static final float HAUTEUR_DOSSIER = 43;
+	static final float LARGEUR_BARRE_DOSSIER = 1;
 	float x, y, z;
 	PShape chaise, pieds, assise, dossier;
 	Chaise(float x, float y, float z) {

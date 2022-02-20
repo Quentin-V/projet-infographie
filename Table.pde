@@ -1,9 +1,9 @@
 public class Table {
-	final float LARGEUR_PIED = 6;
-	final float HAUTEUR_PIED = 72;
-	final float LONGUEUR_PLATEAU = 160;
-	final float LARGEUR_PLATEAU = 80;
-	final float HAUTEUR_PLATEAU = 3;
+	static final float LARGEUR_PIED = 6;
+	static final float HAUTEUR_PIED = 72;
+	static final float LONGUEUR_PLATEAU = 160;
+	static final float LARGEUR_PLATEAU = 80;
+	static final float HAUTEUR_PLATEAU = 3;
 	float x, y, z;
 	private PShape table;
 	Table(float x, float y, float z) {

@@ -26,7 +26,7 @@ public class TableComplete {
 	}
 
 	private void creerObjets() {
-		table = new Table(x, y, z);
+	    table = new Table(x, y, z);
 	    cl = new Clavier(x+20, y-75, z+20);
 	    ec = new Ecran(x+15, y-87, z+60);
 	    sou = new Souris(x+9, y-75, z+23);

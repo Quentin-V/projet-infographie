@@ -1,8 +1,8 @@
 public class Salle extends QShape {
-	public final static float LARGEUR_SALLE = 620;
-	public final static float LONGUEUR_SALLE = 980;
-	public final static float HAUTEUR_SALLE = 280;
-	final int MUR_COLOR = color(150, 210, 200);
+	final static float LARGEUR_SALLE = 620;
+	final static float LONGUEUR_SALLE = 980;
+	final static float HAUTEUR_SALLE = 280;
+	final static int MUR_COLOR = color(150, 210, 200);
 	Salle() {
 		super(0, 0, 0);
 		shape = createShape(GROUP);
