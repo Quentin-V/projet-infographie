@@ -22,10 +22,10 @@ PVector[] lightPos = {
 
 PVector[] lightColor = {
 	//new PVector(255, 255, 255),
-	new PVector(180, 180, 180),
-	new PVector(180, 180, 180),
-	new PVector(180, 180, 180),
-	new PVector(180, 180, 180)
+	new PVector(140, 140, 140),
+	new PVector(140, 140, 140),
+	new PVector(140, 140, 140),
+	new PVector(140, 140, 140)
 };
 
 Salle salle;
@@ -34,13 +34,18 @@ Camera camera;
 ArrayList<TableComplete> tablesCompletes;
 
 // Textures
-public PImage wood, metal, white;
+public PImage wood, metal, white, back;
 PImage[] aTexWhite, aTexMetal, aTexWood;
+
+int pwidth, pheight;
 void setup() {
 	// SETTINGS AND SHADER
-	size(1920, 1080, P3D);
+	size(1280, 720, P3D);
 	textureWrap(REPEAT);
 	shader = loadShader("./LightShaderTexFrag.glsl", "LightShaderTexVert.glsl");
+
+	// Background
+	back = loadImage("./back.jpg");
 
 	// TEXTURES
 	wood = loadImage("./wood.jpg");
@@ -51,17 +56,28 @@ void setup() {
 	aTexWhite = new PImage[] {white, white, white, white, white, white};
 
 	// OBJETS
-	camera = new Camera(0, -100, -250);
+	camera = new Camera(200, -300, -400, -PI/6, PI/8);
 	salle = new Salle();
 	tableau = new Tableau(170, -60, Salle.LONGUEUR_SALLE/2-1);
+	
 	tablesCompletes = new ArrayList<TableComplete>();
+
 	for(int x = -300; x <= 100; x += 161)
 		for(int z = -350; z <= 300; z += 150)
 			tablesCompletes.add(new TableComplete(x, 0, z));
+
+  pwidth = pheight = 0;
 }
 
 void draw() {
-	background(0);
+  if(pwidth != width || pheight != height) { // Detect resizing
+    back.resize(width, height);
+    camera.camChanged = true;
+  }
+  
+  //background(back);
+  pwidth = width;
+  pheight = height;
 
 	// Calcul de la position de la caméra dans la classe Camera
 	beginCamera();
@@ -94,11 +110,12 @@ void keyReleased() {
 void mouseWheel(MouseEvent event) {
 	camera.addFac(event.getCount());
 }
-
+/*
 void mouseMoved() {
-	if(pmouseX < mouseX) camera.visRight(Camera.angFac);
-	else if(pmouseX > mouseX) camera.visLeft(Camera.angFac);
-	if(pmouseY < mouseY) camera.visDown(Camera.angFac);
-	else if(pmouseY > mouseY) camera.visUp(Camera.angFac);
+	if(pmouseX < mouseX) camera.visRight(camera.angFac);
+	else if(pmouseX > mouseX) camera.visLeft(camera.angFac);
+	if(pmouseY < mouseY) camera.visDown(camera.angFac);
+	else if(pmouseY > mouseY) camera.visUp(camera.angFac);
+	camera.camChanged = true;
 }
-
+*/

@@ -128,7 +128,7 @@ public class Box extends QShape {
 
 	// Coords, col
 	Box(float x, float y, float z, float tx, float ty, float tz, int col) {
-		this(x, y, z, tx, ty, tz, aTexWhite, whiteCols, NOT_SHINY, 1, 1);
+		this(x, y, z, tx, ty, tz, aTexWhite, toArraySix(col), NOT_SHINY, 1, 1);
 	}
 
 	// Coords

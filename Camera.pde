@@ -1,25 +1,36 @@
 public class Camera {
 
   
-  static final float fac = 5;
-  static final float angFac = 1;
+  float fac = 5;
+  float angFac = 1;
 
   final PVector yNorm = new PVector(0, 1, 0);
   PVector camVec, pos;
   float angX, angY;
+  boolean  camChanged;
   public Camera(float posX, float posY, float posZ) {
     pos = new PVector(posX, posY, posZ);
     camVec = new PVector(1, 0, 0);
     angX = angY = 0;
+    camChanged = true;
+  }
+  public Camera(float posX, float posY, float posZ, float angX, float angY) {
+    this(posX, posY, posZ);
+    this.angX = angX;
+    this.angY = angY;
   }
   void viser() {
+    if(!camChanged) return;
+    // Calcul de la position
     camVec.x = cos(angY) * sin(angX);
     camVec.y = sin(angY);
     camVec.z = cos(angY) * cos(angX);
-    camera(pos.x, pos.y, pos.z,
-         pos.x + camVec.x,  pos.y + camVec.y,  pos.z + camVec.z,
-         0, 1, 0); 
+    camera(pos.x,            pos.y,             pos.z,
+           pos.x + camVec.x, pos.y + camVec.y,  pos.z + camVec.z,
+           0,                1,                 0);
+    camChanged = false;
   }
+
   void forward(float fac) {
       pos.add(camVec.copy().normalize().mult(fac));
   }
@@ -96,6 +107,7 @@ public class Camera {
         visRight(angFac);
         break;
     }
+    camChanged = true;
   }
   
   void addFac(float inc) {
