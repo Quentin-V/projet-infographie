@@ -113,6 +113,7 @@ public class Camera {
   void addFac(float inc) {
     if(inc < 0 && fac <= 0 || inc > 0 && fac >= 50) return;
     fac += inc; 
+    angFac += inc/5;
   }
   
   PVector getPerpendicularWithY(PVector v) {
