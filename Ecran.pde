@@ -48,7 +48,7 @@
 			texEcran,
 			color(255, 255, 255),
 			100,
-			1, -1 // On doit retourner l'image verticalement pour qu'elle soit à l'endroit
+			-1, -1 // On doit retourner l'image verticalement pour qu'elle soit à l'endroit
 		).getShape();
 		ecran.addChild(dale);
 	}

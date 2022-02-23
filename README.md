@@ -14,3 +14,6 @@ Le contrôle de la caméra s'ffectue avec les touches Z, Q, S et D ainsi que des
 Vous pouvez déplacer la caméra dans l'environnement avec ZQSD de la même manière que dans la plupart des jeux.
 
 Les flèches directionelles vous permetteront de changer la visée de la caméra.
+
+## Classes d'objets
+Les fichiers avec des noms d'objets sont les classes qui contiennent les structures des objets, ces classses permettent de créer les objets et de les afficher dans le modèle.

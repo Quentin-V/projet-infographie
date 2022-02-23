@@ -1,5 +1,5 @@
 static final boolean CODING_MODE = false;
-static final boolean LOW_NETWORK_MODE = false;
+static final boolean LOW_NETWORK_MODE = true;
 
 // Shader
 PShader shader;
@@ -24,10 +24,10 @@ ArrayList<Integer> pressedKeys = new ArrayList();
 // Positions et couleur des lumières
 final PVector[] lightPos = {
 	//new PVector( 300, 300,  300),
-	new PVector(-360, 300,  490),
-	new PVector(-360, 300, -490),
-	new PVector( 360, 300,  490),
-	new PVector( 360, 300, -490)
+	new PVector(-360, 250,  490),
+	new PVector(-360, 250, -490),
+	new PVector( 360, 250,  490),
+	new PVector( 360, 250, -490)
 };
 final PVector[] lightColor = {
 	//new PVector(255, 255, 255),
@@ -41,6 +41,8 @@ final PVector[] lightColor = {
 Camera camera;
 Salle salle;
 Tableau tableau;
+Table bureau;
+ArrayList<Table> tablesFond;
 ArrayList<TableComplete> tablesCompletes;
 
 // Comme pmouseX et pmouseY mais pour la taille de l'écran
@@ -80,16 +82,22 @@ void setup() {
 	salle = new Salle();
 	tableau = new Tableau(170, -60, Salle.LONGUEUR_SALLE/2-1);
 	
-	tablesCompletes = new ArrayList<TableComplete>(); // Initialisation de la liste des tables
+	tablesFond = new ArrayList<>();
+	tablesCompletes = new ArrayList<>(); // Initialisation de la liste des tables
 	
 	// Création des tables
 	if(!CODING_MODE) // En coding mode, on cache les tables car elles utilisent beaucoup de ressources
 		for(int x = -300; x <= 100; x += 161)
-			for(int z = -350; z <= 300; z += 150)
+			for(int z = -300; z <= 200; z += 160)
 				tablesCompletes.add(new TableComplete(x, 0, z));
 	
+	for(int x = -270; x <= 0; x+=165)
+		tablesFond.add(new Table(x, 0, -Salle.LONGUEUR_SALLE/2 + 10));
+
+	bureau = new Table(-100, 0, 264);
+
 	pwidth = pheight = 0; // Initialisation des variables
-	frameRate(30); // On définit le frameRate à 30 pour éviter les lags
+	frameRate(60); // On définit le frameRate à 30 pour éviter les lags
 }
 
 void draw() {
@@ -120,6 +128,8 @@ void draw() {
 	salle.drawShape();
 	tableau.dessine();
 	tablesCompletes.forEach(TableComplete::dessine);
+	tablesFond.forEach(Table::dessine);
+	bureau.dessine();
 }
 
 // Fonctions pour la caméra
