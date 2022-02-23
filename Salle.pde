@@ -2,17 +2,19 @@ public class Salle extends QShape {
 	final static float LARGEUR_SALLE = 620;
 	final static float LONGUEUR_SALLE = 980;
 	final static float HAUTEUR_SALLE = 280;
-	final static int MUR_COLOR = color(150, 210, 200);
+	final int MUR_COLOR = #FFFFFF;
+	final PImage texPorte = loadImage("./mur.jpg");
 	Salle() {
 		super(0, 0, 0);
 		shape = createShape(GROUP);
 		Box m1, m3, m4, sol;
 		PShape murFenetre;
-		//                   x         y          z                  tx           ty             tz                color
-		m1 = new Box(-LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2,             5, -HAUTEUR_SALLE, LONGUEUR_SALLE, MUR_COLOR);
+		
+		//                   x         y          z                  tx           ty             tz            color
+		m1 = new Box(-LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2,             5, -HAUTEUR_SALLE, LONGUEUR_SALLE, texPorte);
 		murFenetre = createMurFenetre();
-		m3 = new Box(-LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2, LARGEUR_SALLE, -HAUTEUR_SALLE,              5, MUR_COLOR);
-		m4 = new Box(-LARGEUR_SALLE/2, 0,  LONGUEUR_SALLE/2, LARGEUR_SALLE, -HAUTEUR_SALLE,              5, MUR_COLOR);
+		m3 = new Box(-LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2, LARGEUR_SALLE, -HAUTEUR_SALLE,              5, texPorte);
+		m4 = new Box(-LARGEUR_SALLE/2, 0,  LONGUEUR_SALLE/2, LARGEUR_SALLE, -HAUTEUR_SALLE,              5, texPorte);
 		shape.addChild(m1.getShape());
 		shape.addChild(murFenetre);
 		shape.addChild(m3.getShape());
@@ -37,15 +39,15 @@ public class Salle extends QShape {
 
 	PShape createMurFenetre() {
 		PShape mur = createShape(GROUP);
-		mur.addChild(new Box(LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2,                                                                   5, -HAUTEUR_SALLE, 100, MUR_COLOR).getShape());
-		mur.addChild(new Box(LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2 + 100 + Fenetre.LONGUEUR_FENETRE,                                  5, -HAUTEUR_SALLE, 200, MUR_COLOR).getShape());
-		mur.addChild(new Box(LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2 + 100 + Fenetre.LONGUEUR_FENETRE + 200 + Fenetre.LONGUEUR_FENETRE, 5, -HAUTEUR_SALLE, 185, MUR_COLOR).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2,                                                                   5, -HAUTEUR_SALLE, 100, texPorte).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2 + 100 + Fenetre.LONGUEUR_FENETRE,                                  5, -HAUTEUR_SALLE, 200, texPorte).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, 0, -LONGUEUR_SALLE/2 + 100 + Fenetre.LONGUEUR_FENETRE + 200 + Fenetre.LONGUEUR_FENETRE, 5, -HAUTEUR_SALLE, 185, texPorte).getShape());
 
-		mur.addChild(new Box(LARGEUR_SALLE/2, 0   , -390, 5,                   -100, Fenetre.LONGUEUR_FENETRE, MUR_COLOR).getShape());
-		mur.addChild(new Box(LARGEUR_SALLE/2, -200, -390, 5, -(HAUTEUR_SALLE - 200), Fenetre.LONGUEUR_FENETRE, MUR_COLOR).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, 0   , -390, 5,                   -100, Fenetre.LONGUEUR_FENETRE, texPorte).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, -200, -390, 5, -(HAUTEUR_SALLE - 200), Fenetre.LONGUEUR_FENETRE, texPorte).getShape());
 
-		mur.addChild(new Box(LARGEUR_SALLE/2, 0   , 60, 5,                   -100, Fenetre.LONGUEUR_FENETRE, MUR_COLOR).getShape());
-		mur.addChild(new Box(LARGEUR_SALLE/2, -200, 60, 5, -(HAUTEUR_SALLE - 200), Fenetre.LONGUEUR_FENETRE, MUR_COLOR).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, 0   , 60, 5,                   -100, Fenetre.LONGUEUR_FENETRE, texPorte).getShape());
+		mur.addChild(new Box(LARGEUR_SALLE/2, -200, 60, 5, -(HAUTEUR_SALLE - 200), Fenetre.LONGUEUR_FENETRE, texPorte).getShape());
 		return mur;
 	}
 }

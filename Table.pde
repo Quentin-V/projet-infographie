@@ -12,7 +12,7 @@ public class Table {
 		this.z = z;
 		table = createShape(GROUP);
 		table.addChild(creerPieds());
-		table.addChild(new Box(x, y-HAUTEUR_PIED, z, LONGUEUR_PLATEAU, -HAUTEUR_PLATEAU, LARGEUR_PLATEAU).getShape());
+		table.addChild(new Box(x, y-HAUTEUR_PIED, z, LONGUEUR_PLATEAU, -HAUTEUR_PLATEAU, LARGEUR_PLATEAU, color(100, 150, 255), 200).getShape());
 	}
 
 	void dessine() {

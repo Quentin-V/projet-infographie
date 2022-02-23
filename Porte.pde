@@ -8,13 +8,13 @@ public class Porte {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		//PImage texPorte = loadImage("./porte.jpg");
+		PImage texPorte = loadImage("./porte.jpg");
 		porte = createShape(GROUP);
 		PShape blocPorte = new Box(
 			x, y, z,  // Coords
 			LARGEUR_PORTE, -HAUTEUR_PORTE, LONGUEUR_PORTE, // Size
-			wood,
-			color(80, 80, 80),
+			texPorte,
+			color(255, 255, 255),
 			-1
 		).getShape();
 		porte.addChild(blocPorte);
